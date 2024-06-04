@@ -12,76 +12,96 @@
   <% end %>
 
   <div>
-    <%= form.label :store, style: "display: block" %>
-    <%= form.text_field :store %>
-  </div>
-
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :discount_type, style: "display: block" %>
-    <%= form.number_field :discount_type %>
-  </div>
-
-  <div>
-    <%= form.label :activation_date, style: "display: block" %>
-    <%= form.datetime_field :activation_date %>
-  </div>
-
-  <div>
-    <%= form.label :deactivation_date, style: "display: block" %>
-    <%= form.datetime_field :deactivation_date %>
-  </div>
-
-  <div>
     <%= form.label :status, style: "display: block" %>
     <%= form.check_box :status %>
   </div>
 
   <div>
-    <%= form.label :price_from, style: "display: block" %>
-    <%= form.text_field :price_from %>
+    <%= form.label :name, "Nome do desconto", style: "display: block" %>
+    <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :price_to, style: "display: block" %>
-    <%= form.text_field :price_to %>
+    <%= form.label :description, "Descrição do desconto", style: "display: block" %>
+    <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :price_leve, style: "display: block" %>
-    <%= form.text_field :price_leve %>
+    <%= form.label :discount_type, "Tipo do desconto", style: "display: block" %>
+    <%= form.select :discount_type, Discount.discount_types.keys.map { |w| [w.humanize, w] } %>
+  </div>
+
+  <div id="de_por_fields">
+    <div class="field">
+      <%= form.label :price_from, "Preço \"DE\"", style: "display: block" %>
+      <%= form.number_field :price_from %>
+    </div>
+
+    <div class="field">
+      <%= form.label :price_to, "Preço \"POR\"", style: "display: block" %>
+      <%= form.number_field :price_to %>
+    </div>
+  </div>
+
+  <div id="leve_mais_pague_menos_fields" style="display:none;">
+    <div class="field">
+      <%= form.label :price, "Preço", style: "display: block" %>
+      <%= form.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= form.label :quantity_leve, "Leve", style: "display: block" %>
+      <%= form.number_field :quantity_leve %>
+    </div>
+
+    <div class="field">
+      <%= form.label :quantity_pague, "Pague", style: "display: block" %>
+      <%= form.number_field :quantity_pague %>
+    </div>
+  </div>
+
+  <div id="percentual_fields" style="display:none;">
+    <div class="field">
+      <%= form.label :price, "Preço", style: "display: block" %>
+      <%= form.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= form.label :discount_percentage, "Percentual do Desconto", style: "display: block" %>
+      <%= form.number_field :discount_percentage %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :price_pague, style: "display: block" %>
-    <%= form.text_field :price_pague %>
+    <%= form.label :activation_date, "Data da ativação", style: "display: block" %>
+    <%= form.datetime_field :activation_date %>
   </div>
 
   <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+    <%= form.label :deactivation_date, "Data da inativação", style: "display: block" %>
+    <%= form.datetime_field :deactivation_date %>
   </div>
 
   <div>
-    <%= form.label :discount_percentage, style: "display: block" %>
-    <%= form.text_field :discount_percentage %>
+    <%= form.label :image, "Imagem", style: "display: block" %>
+    <%= form.text_field :image %>
   </div>
 
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function toggleFields() {
+      const discountType = document.querySelector('#discount_discount_type').value;
+      document.querySelector('#de_por_fields').style.display = discountType === 'de_por' ? 'block' : 'none';
+      document.querySelector('#leve_mais_pague_menos_fields').style.display = discountType === 'leve_mais_pague_menos' ? 'block' : 'none';
+      document.querySelector('#percentual_fields').style.display = discountType === 'percentual' ? 'block' : 'none';
+    }
+
+    document.querySelector('#discount_discount_type').addEventListener('change', toggleFields);
+    toggleFields();
+  });
+</script>

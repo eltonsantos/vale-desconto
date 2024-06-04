@@ -23,11 +23,10 @@ class DiscountsTest < ApplicationSystemTestCase
     fill_in "Name", with: @discount.name
     fill_in "Price", with: @discount.price
     fill_in "Price from", with: @discount.price_from
-    fill_in "Price leve", with: @discount.price_leve
-    fill_in "Price pague", with: @discount.price_pague
     fill_in "Price to", with: @discount.price_to
+    fill_in "Quantity leve", with: @discount.quantity_leve
+    fill_in "Quantity pague", with: @discount.quantity_pague
     check "Status" if @discount.status
-    fill_in "Store", with: @discount.store
     click_on "Create Discount"
 
     assert_text "Discount was successfully created"
@@ -47,11 +46,10 @@ class DiscountsTest < ApplicationSystemTestCase
     fill_in "Name", with: @discount.name
     fill_in "Price", with: @discount.price
     fill_in "Price from", with: @discount.price_from
-    fill_in "Price leve", with: @discount.price_leve
-    fill_in "Price pague", with: @discount.price_pague
     fill_in "Price to", with: @discount.price_to
+    fill_in "Quantity leve", with: @discount.quantity_leve
+    fill_in "Quantity pague", with: @discount.quantity_pague
     check "Status" if @discount.status
-    fill_in "Store", with: @discount.store
     click_on "Update Discount"
 
     assert_text "Discount was successfully updated"

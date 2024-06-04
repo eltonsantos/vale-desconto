@@ -17,7 +17,7 @@ class DiscountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create discount" do
     assert_difference("Discount.count") do
-      post discounts_url, params: { discount: { activation_date: @discount.activation_date, deactivation_date: @discount.deactivation_date, description: @discount.description, discount_percentage: @discount.discount_percentage, discount_type: @discount.discount_type, image: @discount.image, name: @discount.name, price: @discount.price, price_from: @discount.price_from, price_leve: @discount.price_leve, price_pague: @discount.price_pague, price_to: @discount.price_to, status: @discount.status, store: @discount.store } }
+      post discounts_url, params: { discount: { activation_date: @discount.activation_date, deactivation_date: @discount.deactivation_date, description: @discount.description, discount_percentage: @discount.discount_percentage, discount_type: @discount.discount_type, image: @discount.image, name: @discount.name, price: @discount.price, price_from: @discount.price_from, price_to: @discount.price_to, quantity_leve: @discount.quantity_leve, quantity_pague: @discount.quantity_pague, status: @discount.status } }
     end
 
     assert_redirected_to discount_url(Discount.last)
@@ -34,7 +34,7 @@ class DiscountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update discount" do
-    patch discount_url(@discount), params: { discount: { activation_date: @discount.activation_date, deactivation_date: @discount.deactivation_date, description: @discount.description, discount_percentage: @discount.discount_percentage, discount_type: @discount.discount_type, image: @discount.image, name: @discount.name, price: @discount.price, price_from: @discount.price_from, price_leve: @discount.price_leve, price_pague: @discount.price_pague, price_to: @discount.price_to, status: @discount.status, store: @discount.store } }
+    patch discount_url(@discount), params: { discount: { activation_date: @discount.activation_date, deactivation_date: @discount.deactivation_date, description: @discount.description, discount_percentage: @discount.discount_percentage, discount_type: @discount.discount_type, image: @discount.image, name: @discount.name, price: @discount.price, price_from: @discount.price_from, price_to: @discount.price_to, quantity_leve: @discount.quantity_leve, quantity_pague: @discount.quantity_pague, status: @discount.status } }
     assert_redirected_to discount_url(@discount)
   end
 

@@ -8,6 +8,11 @@ class DiscountsController < ApplicationController
 
   # GET /discounts/1 or /discounts/1.json
   def show
+    @discount = Discount.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /discounts/new
@@ -54,6 +59,14 @@ class DiscountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to discounts_url, notice: "Discount was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def toggle_status
+    @discount = Discount.find(params[:id])
+    @discount.update(status: !@discount.status)
+    respond_to do |format|
+      format.js
     end
   end
 

@@ -1,13 +1,123 @@
 @import "bootstrap";
 
-.table thead th {
-  background-color: rgb(13, 110, 253);
-  color: white;
-  text-align: center;
+* {
+  font-family: 'Rubik', sans-serif;
 }
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+
+body {
+  background-color: #F5F5F5;
 }
-.table-striped tbody tr:nth-of-type(even) {
+
+h1 {
+  color: #37474F;
+}
+
+h2 {
+  color: #455A64;
+  font-size: 20px;
+}
+
+h6 {
+  color: #455A64;
+}
+
+.table-main th {
+  background-color: #F1F4F5;
+  color: #455A64;
+  padding: 15px;
+}
+
+#sidebar {
+  background-color: #007fba;
+  color: #fff;
+  height: 100vh;
+  padding: 1rem;
+}
+
+#sidebar h2 {
+  color: #fff;
+}
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar ul li {
+  margin: 10px 0;
+}
+
+#sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#main-content {
+  padding: 1rem;
+}
+
+#sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+}
+
+.menu-icon-left {
+  margin-right: 0.5rem;
+}
+
+.menu-icon-right {
+  margin-left: auto;
+}
+
+#main-content {
+  padding: 1rem;
+}
+
+#discounts {
   background-color: #fff;
+  border: 1px solid #CFD8DC;
+  margin-top: 20px;
+}
+
+.discounts-top {
+  padding: 10px;
+  border-bottom: 1px solid #CFD8DC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discounts-search {
+  padding: 10px;
+}
+
+.custom-btn {
+  background-color: #007FBA;
+  color: #fff;
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+}
+
+.custom-btn:hover {
+  background-color: darken(#007FBA, 10%);
+  color: #fff;
+  text-decoration: none;
 }

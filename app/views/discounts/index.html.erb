@@ -1,14 +1,76 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Discounts</h1>
+<h1>Lista de descontos</h1>
+<h6>Loja: Super João - Nova loja online</h6>
 
 <div id="discounts">
-  <% @discounts.each do |discount| %>
-    <%= render discount %>
-    <p>
-      <%= link_to "Show this discount", discount %>
-    </p>
-  <% end %>
+  <div class="discounts-top">
+    <h2>Descontos cadastrados</h2>
+    <%= link_to "Novo desconto", new_discount_path, class: 'btn custom-btn' %>
+  </div>
+
+  <div class="container discounts-search py-3">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="status-select">Status</label>
+          <select class="form-select" id="status-select">
+            <option value="">Selecione o Status</option>
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="discount-type-select">Tipo do Desconto</label>
+          <select class="form-select" id="discount-type-select">
+            <option value="">Selecione o Tipo do Desconto</option>
+            <option value="de_por">De/Por</option>
+            <option value="leve_mais_pague_menos">Leve mais pague menos</option>
+            <option value="percentual">Percentual</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="discounts-list">
+    <table class="table table-main">
+      <thead>
+        <tr>
+          <th>Desconto</th>
+          <th>Tipo</th>
+          <th>Data ativação</th>
+          <th>Data inativação</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      <thead>
+      <tbody>
+        <% @discounts.each do |discount| %>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
+                <span class="ml-2"><%= discount.name %></span>
+              </div>
+            </td>
+            <td><%= discount.discount_type %></td>
+            <td><%= discount.activation_date %></td>
+            <td><%= discount.deactivation_date %></td>
+            <td>
+              <%= link_to image_tag('status.svg', id: "status-#{discount.id}") %>
+            </td>
+            <td>
+              <p>
+                <%= link_to image_tag('eye.svg', alt: 'Show'), discount_path(discount), class: 'show-discount-link', data: { toggle: "modal", target: "#showDiscountModal-#{discount.id}" } %>
+              </p>
+            </td>
+          </tr>
+        <% end %>
+      <tbody>
+    </table>
+  </div>
 </div>
 
-<%= link_to "New discount", new_discount_path %>

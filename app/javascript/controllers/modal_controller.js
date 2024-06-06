@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
-import * as bootstrap from "bootstrap"
+import { Modal } from "bootstrap"
+
 
 export default class extends Controller {
   connect() {
-    this.modal = new bootstrap.Modal(this.element, {
+    this.modal = new Modal(this.element, {
       keyboard: false
     })
     this.modal.show()

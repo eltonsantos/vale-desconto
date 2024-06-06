@@ -4,6 +4,10 @@ class DiscountsController < ApplicationController
   # GET /discounts or /discounts.json
   def index
     @discounts = Discount.all
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /discounts/1 or /discounts/1.json
@@ -42,11 +46,12 @@ class DiscountsController < ApplicationController
   def update
     respond_to do |format|
       if @discount.update(discount_params)
-        format.html { redirect_to discount_url(@discount), notice: "Discount was successfully updated." }
+        format.html { redirect_to discount_url, notice: "Discount was successfully updated." }
         format.json { render :show, status: :ok, location: @discount }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @discount.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end

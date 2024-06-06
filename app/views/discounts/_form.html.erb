@@ -1,8 +1,7 @@
-<%= form_with(model: discount) do |form| %>
+<%= form_with(model: discount, local: true, class: 'needs-validation') do |form| %>
   <% if discount.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h2><%= pluralize(discount.errors.count, "erro") %> impediram o salvamento deste desconto:</h2>
       <ul>
         <% discount.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,84 +10,92 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.check_box :status %>
-  </div>
-
-  <div>
-    <%= form.label :name, "Nome do desconto", style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, "Descrição do desconto", style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :discount_type, "Tipo do desconto", style: "display: block" %>
-    <%= form.select :discount_type, Discount.discount_types.keys.map { |w| [w.humanize, w] } %>
-  </div>
-
-  <div id="de_por_fields">
-    <div class="field">
-      <%= form.label :price_from, "Preço \"DE\"", style: "display: block" %>
-      <%= form.number_field :price_from %>
-    </div>
-
-    <div class="field">
-      <%= form.label :price_to, "Preço \"POR\"", style: "display: block" %>
-      <%= form.number_field :price_to %>
+  <div class="mb-3">
+    <%= form.label :status, class: 'form-label' %>
+    <div class="form-check">
+      <%= form.check_box :status, class: 'form-check-input' %>
+      <label class="form-check-label" for="discount_status">Ativo</label>
     </div>
   </div>
 
-  <div id="leve_mais_pague_menos_fields" style="display:none;">
-    <div class="field">
-      <%= form.label :price, "Preço", style: "display: block" %>
-      <%= form.number_field :price %>
-    </div>
-
-    <div class="field">
-      <%= form.label :quantity_leve, "Leve", style: "display: block" %>
-      <%= form.number_field :quantity_leve %>
-    </div>
-
-    <div class="field">
-      <%= form.label :quantity_pague, "Pague", style: "display: block" %>
-      <%= form.number_field :quantity_pague %>
-    </div>
+  <div class="mb-3">
+    <%= form.label :name, "Nome do desconto", class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div id="percentual_fields" style="display:none;">
-    <div class="field">
-      <%= form.label :price, "Preço", style: "display: block" %>
-      <%= form.number_field :price %>
-    </div>
+  <div class="mb-3">
+    <%= form.label :description, "Descrição do desconto", class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
 
-    <div class="field">
-      <%= form.label :discount_percentage, "Percentual do Desconto", style: "display: block" %>
-      <%= form.number_field :discount_percentage %>
+  <div class="mb-3">
+    <%= form.label :discount_type, "Tipo do desconto", class: 'form-label' %>
+    <%= form.select :discount_type, Discount.discount_types.keys.map { |w| [w.humanize, w] }, {}, class: 'form-select' %>
+  </div>
+
+  <div id="de_por_fields" class="row mb-3">
+    <div class="col-md-6">
+      <%= form.label :price_from, "Preço 'DE'", class: 'form-label' %>
+      <%= form.number_field :price_from, class: 'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :price_to, "Preço 'POR'", class: 'form-label' %>
+      <%= form.number_field :price_to, class: 'form-control' %>
     </div>
   </div>
 
-  <div>
-    <%= form.label :activation_date, "Data da ativação", style: "display: block" %>
-    <%= form.datetime_field :activation_date %>
+  <div id="leve_mais_pague_menos_fields" class="row mb-3" style="display:none;">
+    <div class="col-md-4">
+      <%= form.label :price, "Preço", class: 'form-label' %>
+      <%= form.number_field :price, class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :quantity_leve, "Leve", class: 'form-label' %>
+      <%= form.number_field :quantity_leve, class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :quantity_pague, "Pague", class: 'form-label' %>
+      <%= form.number_field :quantity_pague, class: 'form-control' %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :deactivation_date, "Data da inativação", style: "display: block" %>
-    <%= form.datetime_field :deactivation_date %>
+  <div id="percentual_fields" class="row mb-3" style="display:none;">
+    <div class="col-md-6">
+      <%= form.label :price, "Preço", class: 'form-label' %>
+      <%= form.number_field :price, class: 'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :discount_percentage, "Percentual do Desconto", class: 'form-label' %>
+      <%= form.number_field :discount_percentage, class: 'form-control' %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :image, "Imagem", style: "display: block" %>
-    <%= form.text_field :image %>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <%= form.label :activation_date, "Data da ativação", class: 'form-label' %>
+      <%= form.datetime_field :activation_date, class: 'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :deactivation_date, "Data da inativação", class: 'form-label' %>
+      <%= form.datetime_field :deactivation_date, class: 'form-control' %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :image, "Imagem", class: 'form-label' %>
+    <div class="border border-dotted p-3 text-center" style="border: 1px solid #ccc; border-style: dotted;">
+      <div class="mb-2">
+        <i class="bi bi-cloud-upload" style="font-size: 2rem;"></i>
+      </div>
+      <strong>Arraste e solte a imagem aqui ou clique para upload!</strong>
+      <br>
+      <small>Largura x altura recomendada 1000 x 1000px. Tamanho máximo 800KB.</small>
+      <%= form.file_field :image, class: 'form-control-file', style: 'display: none;' %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit 'Salvar', class: 'btn btn-primary' %>
   </div>
 <% end %>
 

@@ -64,7 +64,7 @@
             </td>
             <td>
               <p>
-                <%= link_to image_tag('eye.svg', alt: 'Edit'), edit_discount_path(discount), class: 'show-discount-link', data: { turbo_frame: 'modal' } %>
+                <%= link_to image_tag('eye.svg', alt: 'Show'), discount_path(discount), class: 'show-discount-link', data: { toggle: "modal", target: "#showDiscountModal-#{discount.id}" } %>
               </p>
             </td>
           </tr>

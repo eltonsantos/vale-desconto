@@ -50,6 +50,7 @@
         </div>
         <div class="col-10" id="main-content">
           <%= yield %>
+          <%= turbo_frame_tag "modal", target: ":_top" %>
         </div>
       </div>
     </div>

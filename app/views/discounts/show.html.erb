@@ -70,4 +70,5 @@
   <%= link_to "Back to discounts", discounts_path %>
 
   <%= button_to "Destroy this discount", @discount, method: :delete %>
+  <%= link_to "Delete", @discount, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
 </div>

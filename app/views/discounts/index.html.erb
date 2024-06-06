@@ -57,14 +57,14 @@
               </div>
             </td>
             <td><%= discount.discount_type %></td>
-            <td><%= discount.activation_date %></td>
-            <td><%= discount.deactivation_date %></td>
+            <td><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
+            <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
             <td>
               <%= link_to image_tag('status.svg', id: "status-#{discount.id}") %>
             </td>
             <td>
               <p>
-                <%= link_to image_tag('eye.svg', alt: 'Show'), discount_path(discount), class: 'show-discount-link', data: { toggle: "modal", target: "#showDiscountModal-#{discount.id}" } %>
+                <%= link_to image_tag('eye.svg', alt: 'Edit'), edit_discount_path(discount), class: 'show-discount-link', data: { turbo_frame: 'modal' } %>
               </p>
             </td>
           </tr>

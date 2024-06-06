@@ -1,77 +1,64 @@
-<p style="color: green"><%= notice %></p>
+<%= render "modal", title: "Detail item" do %>
 
   <p>
-    <strong>Image:</strong>
-    <% if @discount.image.attached? %>
-      <%= image_tag @discount.image %>
-    <% end %>
-  </p>
+      <% if @discount.image.attached? %>
+        <%= image_tag @discount.image %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @discount.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @discount.description %>
+    </p>
+
+     <% case @discount.discount_type.to_sym %>
+     <% when :de_por %>
+      <p>
+        <strong>Price from:</strong>
+        <%= @discount.price_from %>
+      </p>
+
+      <p>
+        <strong>Price to:</strong>
+        <%= @discount.price_to %>
+      </p>
+     <% when :leve_mais_pague_menos %>
+      <p>
+        <strong>Price:</strong>
+        <%= @discount.price %>
+      </p>
+
+      <p>
+        <strong>Quantity leve:</strong>
+        <%= @discount.quantity_leve %>
+      </p>
+
+      <p>
+        <strong>Quantity pague:</strong>
+        <%= @discount.quantity_pague %>
+      </p>
+     <% when :percentual %>
+      <p>
+        <strong>Price:</strong>
+        <%= @discount.price %>
+      </p>
+      <p>
+        <strong>Discount percentage:</strong>
+        <%= @discount.discount_percentage %>
+      </p>
+     <% end %>
 
 
-  <p>
-    <strong>Name:</strong>
-    <%= @discount.name %>
-  </p>
+  <div>
+    <%= link_to "Edit this discount", edit_discount_path(@discount), data: { turbo_action: "advance" } %> |
+    <%= link_to "Back to discounts", discounts_path %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @discount.description %>
-  </p>
+    <%= link_to "Delete", @discount, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
 
-  <p>
-    <strong>Discount type:</strong>
-    <%= @discount.discount_type %>
-  </p>
-
-  <p>
-    <strong>Activation date:</strong>
-    <%= @discount.activation_date %>
-  </p>
-
-  <p>
-    <strong>Deactivation date:</strong>
-    <%= @discount.deactivation_date %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= @discount.status %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= @discount.price %>
-  </p>
-
-  <p>
-    <strong>Quantity leve:</strong>
-    <%= @discount.quantity_leve %>
-  </p>
-
-  <p>
-    <strong>Quantity pague:</strong>
-    <%= @discount.quantity_pague %>
-  </p>
-
-  <p>
-    <strong>Price from:</strong>
-    <%= @discount.price_from %>
-  </p>
-
-  <p>
-    <strong>Price to:</strong>
-    <%= @discount.price_to %>
-  </p>
-
-  <p>
-    <strong>Discount percentage:</strong>
-    <%= @discount.discount_percentage %>
-  </p>
-
-<div>
-  <%= link_to "Edit this discount", edit_discount_path(@discount) %> |
-  <%= link_to "Back to discounts", discounts_path %>
-
-  <%= button_to "Destroy this discount", @discount, method: :delete %>
-  <%= link_to "Delete", @discount, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
-</div>
+<% end %>

@@ -1,3 +1,4 @@
+// app/javascript/controllers/modal_controller.js
 import { Controller } from "@hotwired/stimulus";
 import { Modal } from "bootstrap";
 

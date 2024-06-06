@@ -54,5 +54,29 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener('turbo:load', () => {
+        document.querySelectorAll('a[data-turbo-action="advance"]').forEach(link => {
+          link.addEventListener('click', event => {
+            event.preventDefault();
+            const url = event.currentTarget.href;
+            const modal = document.getElementById('discountModal');
+
+            if (modal) {
+              // Bootstrap modal hide
+              const bootstrapModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+              bootstrapModal.hide();
+
+              // Wait for the modal to hide before navigating
+              modal.addEventListener('hidden.bs.modal', () => {
+                window.location.href = url;
+              }, { once: true });
+            } else {
+              window.location.href = url;
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

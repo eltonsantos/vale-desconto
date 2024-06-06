@@ -58,15 +58,27 @@
                 <span class="ml-2"><%= discount.name %></span>
               </div>
             </td>
-            <td><%= discount.discount_type %></td>
+            <td><%= format_discount_type(discount.discount_type) %></td>
             <td><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
             <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
             <td>
-              <%= link_to image_tag('status.svg', id: "status-#{discount.id}") %>
+              <% if discount.status %>
+                <i class="fas fa-check-circle text-success"></i>
+              <% else %>
+                <i class="fas fa-times-circle text-secondary"></i>
+              <% end %>
             </td>
             <td>
               <p>
-                <%= link_to image_tag('eye.svg', alt: 'Show'), discount_path(discount), class: 'show-discount-link', data: { toggle: "modal", target: "#showDiscountModal-#{discount.id}" } %>
+                <%= link_to discount_path(discount), data: { turbo_frame: "modal" } do %>
+                  <%= image_tag 'eye.svg', alt: 'Show' %>
+                <% end %>
+                <%= link_to edit_discount_path(discount) do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to discount, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                  <i class="fas fa-times"></i>
+                <% end %>
               </p>
             </td>
           </tr>

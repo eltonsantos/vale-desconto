@@ -1,4 +1,4 @@
-<%= form_with(model: discount, local: true, class: 'needs-validation') do |form| %>
+<%= form_with(model: discount, local: true, html: { multipart: true, class: 'form-register' }) do |form| %>
   <% if discount.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= pluralize(discount.errors.count, "erro") %> impediram o salvamento deste desconto:</h2>
@@ -10,13 +10,15 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= form.label :status, class: 'form-label' %>
+
+  <div class="discounts-top d-flex justify-content-between align-items-center" style="border-bottom: 1px solid #CFD8DC;">
+    <h2>Formulário cadastro desconto</h2>
     <div class="form-check">
       <%= form.check_box :status, class: 'form-check-input' %>
       <label class="form-check-label" for="discount_status">Ativo</label>
     </div>
   </div>
+
 
   <div class="mb-3">
     <%= form.label :name, "Nome do desconto", class: 'form-label' %>
@@ -83,19 +85,20 @@
 
   <div class="mb-3">
     <%= form.label :image, "Imagem", class: 'form-label' %>
-    <div class="border border-dotted p-3 text-center" style="border: 1px solid #ccc; border-style: dotted;">
+    <div class="border border-dotted p-3 text-center" style="border: 3px solid #ccc; border-style: dotted;">
       <div class="mb-2">
         <i class="bi bi-cloud-upload" style="font-size: 2rem;"></i>
       </div>
       <strong>Arraste e solte a imagem aqui ou clique para upload!</strong>
       <br>
       <small>Largura x altura recomendada 1000 x 1000px. Tamanho máximo 800KB.</small>
-      <%= form.file_field :image, class: 'form-control-file', style: 'display: none;' %>
+      <%= form.file_field :image, class: 'form-control-file' %>
     </div>
+
   </div>
 
-  <div class="mb-3">
-    <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+  <div class="mb-3 text-end">
+    <%= form.submit 'Salvar', class: 'btn btn-primary', style: 'background-color: #007FBA; width: 200px; height: 40px; text-align: center; padding-left: 0; padding-right: 0;' %>
   </div>
 <% end %>
 
@@ -108,7 +111,11 @@
       document.querySelector('#percentual_fields').style.display = discountType === 'percentual' ? 'block' : 'none';
     }
 
-    document.querySelector('#discount_discount_type').addEventListener('change', toggleFields);
-    toggleFields();
+    const discountTypeField = document.querySelector('#discount_discount_type');
+
+    if (discountTypeField) {
+      discountTypeField.addEventListener('change', toggleFields);
+      toggleFields();
+    }
   });
 </script>

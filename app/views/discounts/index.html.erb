@@ -52,7 +52,9 @@
           <tr>
             <td>
               <div class="d-flex align-items-center">
-                <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
+                <% if discount.image.attached? %>
+                  <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
+                <% end %>
                 <span class="ml-2"><%= discount.name %></span>
               </div>
             </td>

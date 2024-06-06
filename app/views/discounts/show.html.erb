@@ -1,9 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<p>
+  <p>
     <strong>Image:</strong>
-    <%= @discount.image %>
+    <% if @discount.image.attached? %>
+      <%= image_tag @discount.image %>
+    <% end %>
   </p>
+
 
   <p>
     <strong>Name:</strong>

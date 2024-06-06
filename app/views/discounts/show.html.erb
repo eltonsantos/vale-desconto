@@ -19,37 +19,35 @@
      <% case @discount.discount_type.to_sym %>
      <% when :de_por %>
       <p>
-        <strong>Price from:</strong>
-        <%= @discount.price_from %>
+        <span>de</span>
+        <s><%= format_price(@discount.price_from) %></s>
       </p>
 
       <p>
-        <strong>Price to:</strong>
-        <%= @discount.price_to %>
+        <strong>por <%= format_price(@discount.price_to) %></strong>
       </p>
      <% when :leve_mais_pague_menos %>
       <p>
+        <strong>Leve <%= @discount.quantity_leve %></strong>
+        <strong>Pague <%= @discount.quantity_pague %></strong>
+      </p>
+
+      <p>
         <strong>Price:</strong>
-        <%= @discount.price %>
-      </p>
-
-      <p>
-        <strong>Quantity leve:</strong>
-        <%= @discount.quantity_leve %>
-      </p>
-
-      <p>
-        <strong>Quantity pague:</strong>
-        <%= @discount.quantity_pague %>
+        <%= format_price(@discount.price) %>
       </p>
      <% when :percentual %>
       <p>
-        <strong>Price:</strong>
-        <%= @discount.price %>
+        <%= format_percentage(@discount.discount_percentage) %>
+        <strong>OFF</strong>
       </p>
       <p>
-        <strong>Discount percentage:</strong>
-        <%= @discount.discount_percentage %>
+        <strong>Price:</strong>
+        <s><%= format_price(@discount.price_percentual) %></s>
+      </p>
+      <p>
+        <strong>Price final:</strong>
+        <%= format_price(@discount.price_final) %>
       </p>
      <% end %>
 

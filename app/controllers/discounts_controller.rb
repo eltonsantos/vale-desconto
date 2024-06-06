@@ -31,7 +31,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to discount_url(@discount), notice: "Discount was successfully created." }
+        format.html { redirect_to discounts_url, notice: "Discount was successfully created." }
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -71,6 +71,6 @@ class DiscountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def discount_params
-      params.require(:discount).permit(:image, :name, :description, :discount_type, :activation_date, :deactivation_date, :status, :price, :quantity_leve, :quantity_pague, :price_from, :price_to, :discount_percentage)
+      params.require(:discount).permit(:image, :name, :description, :discount_type, :activation_date, :deactivation_date, :status, :price, :quantity_leve, :quantity_pague, :price_from, :price_to, :discount_percentage, :price_percentual, :price_final)
     end
 end

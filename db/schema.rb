@@ -47,12 +47,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_045908) do
     t.datetime "activation_date"
     t.datetime "deactivation_date"
     t.boolean "status"
-    t.decimal "price"
+    t.decimal "price", precision: 10, scale: 2
     t.integer "quantity_leve"
     t.integer "quantity_pague"
-    t.decimal "price_from"
-    t.decimal "price_to"
-    t.decimal "discount_percentage"
+    t.decimal "price_from", precision: 10, scale: 2
+    t.decimal "price_to", precision: 10, scale: 2
+    t.decimal "discount_percentage", precision: 10, scale: 2
+    t.decimal "price_percentual", precision: 10, scale: 2
+    t.decimal "price_final", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

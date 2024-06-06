@@ -19,6 +19,7 @@
     </div>
   </div>
 
+
   <div class="mb-3">
     <%= form.label :name, "Nome do desconto", class: 'form-label' %>
     <%= form.text_field :name, class: 'form-control' %>
@@ -37,18 +38,18 @@
   <div id="de_por_fields" class="row mb-3">
     <div class="col-md-6">
       <%= form.label :price_from, "Preço 'DE'", class: 'form-label' %>
-      <%= form.number_field :price_from, class: 'form-control' %>
+      <%= form.number_field :price_from, class: 'form-control', step: '0.01' %>
     </div>
     <div class="col-md-6">
       <%= form.label :price_to, "Preço 'POR'", class: 'form-label' %>
-      <%= form.number_field :price_to, class: 'form-control' %>
+      <%= form.number_field :price_to, class: 'form-control', step: '0.01' %>
     </div>
   </div>
 
   <div id="leve_mais_pague_menos_fields" class="row mb-3" style="display:none;">
     <div class="col-md-4">
       <%= form.label :price, "Preço", class: 'form-label' %>
-      <%= form.number_field :price, class: 'form-control' %>
+      <%= form.number_field :price, class: 'form-control', step: '0.01' %>
     </div>
     <div class="col-md-4">
       <%= form.label :quantity_leve, "Leve", class: 'form-label' %>
@@ -62,12 +63,12 @@
 
   <div id="percentual_fields" class="row mb-3" style="display:none;">
     <div class="col-md-6">
-      <%= form.label :price, "Preço", class: 'form-label' %>
-      <%= form.number_field :price, class: 'form-control' %>
+      <%= form.label :price_percentual, "Preço", class: 'form-label' %>
+      <%= form.number_field :price_percentual, class: 'form-control', step: '0.01' %>
     </div>
     <div class="col-md-6">
       <%= form.label :discount_percentage, "Percentual do Desconto", class: 'form-label' %>
-      <%= form.number_field :discount_percentage, class: 'form-control' %>
+      <%= form.number_field :discount_percentage, class: 'form-control', step: '0.01' %>
     </div>
   </div>
 
@@ -93,7 +94,6 @@
       <small>Largura x altura recomendada 1000 x 1000px. Tamanho máximo 800KB.</small>
       <%= form.file_field :image, class: 'form-control-file' %>
     </div>
-
   </div>
 
   <div class="mb-3 text-end">

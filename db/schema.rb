@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_045908) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_07_142516) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_045908) do
     t.decimal "discount_percentage", precision: 10, scale: 2
     t.decimal "price_percentual", precision: 10, scale: 2
     t.decimal "price_final", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "image"
+    t.string "title"
+    t.text "description"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

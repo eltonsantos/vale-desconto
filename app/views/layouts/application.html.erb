@@ -26,6 +26,13 @@
                 <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
               <% end %>
             </li>
+            <li>
+              <%= link_to products_path, class: 'menu-link' do %>
+                <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
+                Lista de produtos
+                <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
+              <% end %>
+            </li>
           </ul>
         </div>
         <div class="col-10" id="main-content">

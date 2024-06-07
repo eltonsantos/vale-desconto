@@ -1,0 +1,80 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lista de produtos</h1>
+<h6>Loja: Super João - Nova loja online</h6>
+
+<div id="products">
+  <div class="products-top">
+    <h2>Produtos disponíveis</h2>
+    <%= link_to "Novo produto", new_product_path, class: 'btn custom-btn', data: { turbo: false } %>
+  </div>
+
+  <div class="products-list">
+    <% if @products.any? %>
+      <table class="table table-main">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center product-image-div">
+                  <% if product.image.present? %>
+                    <div class="image-container">
+                      <img src="<%= asset_path('loading.gif') %>" class="loading-icon" alt="Loading">
+                      <%= image_tag product.image, alt: product.title, class: 'product-image', width: 50, height: 50, style: "display:none;" %>
+                    </div>
+                  <% end %>
+                  <span class="ml-2 product-title"><%= product.title %></span>
+                </div>
+              </td>
+              <td><%= product.description %></td>
+              <td><%= format_price(product.price) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      
+    <% else %>
+      <p class="product-not-found">Nenhum produto encontrado</p>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.product-image').forEach(function(img) {
+      img.addEventListener('load', function() {
+        this.style.display = 'block';
+        this.previousElementSibling.style.display = 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  .image-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+  }
+
+  .product-title {
+    margin-left: 30px;
+  }
+
+  .loading-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin-right: 20px;
+    width: 15px;
+    height: 15px;
+  }
+</style>

@@ -81,7 +81,7 @@ h6 {
   margin-left: auto;
 }
 
-#discounts {
+#discounts, #products {
   background-color: #fff;
   border: 1px solid #CFD8DC;
   margin-top: 20px;
@@ -103,7 +103,7 @@ h6 {
   color: #455A64 !important;
 }
 
-.discounts-top {
+.discounts-top, .products-top {
   padding: 10px;
   border-bottom: 1px solid #CFD8DC;
   display: flex;
@@ -115,7 +115,7 @@ h6 {
   padding: 10px;
 }
 
-.discount-not-found {
+.discount-not-found, .product-not-found  {
   text-align: center;
   font-weight: bold;
   color: #455A64;
@@ -203,8 +203,8 @@ h6 {
   color: #455A64;
 }
 
-.discount-image {
-  margin-right: 10px;
+.discount-image, .product-image {
+  margin-right: 10px !important;
 }
 
 .discount-image-modal {

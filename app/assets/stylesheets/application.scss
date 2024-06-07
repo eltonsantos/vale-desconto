@@ -292,3 +292,41 @@ h6 {
     text-align: center;
   }
 }
+
+/* FIX BUG FORM */
+#de_por_fields, #leve_mais_pague_menos_fields, #percentual_fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#de_por_fields > div, #leve_mais_pague_menos_fields > div, #percentual_fields > div {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+  #de_por_fields > div, #leve_mais_pague_menos_fields > div, #percentual_fields > div {
+    flex: 1;
+  }
+}
+
+#de_por_fields,
+#leve_mais_pague_menos_fields,
+#percentual_fields {
+  display: none;
+}
+
+#de_por_fields.active,
+#leve_mais_pague_menos_fields.active,
+#percentual_fields.active {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#de_por_fields > div,
+#leve_mais_pague_menos_fields > div,
+#percentual_fields > div {
+  flex: 1;
+}
+

@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <div id="leve_mais_pague_menos_fields" class="row mb-3" style="display:none;">
+  <div id="leve_mais_pague_menos_fields" class="row mb-3">
     <div class="col-md-4">
       <%= form.label :price, "Preço", class: 'form-label' %>
       <%= form.number_field :price, class: 'form-control', step: '0.01' %>
@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  <div id="percentual_fields" class="row mb-3" style="display:none;">
+  <div id="percentual_fields" class="row mb-3">
     <div class="col-md-6">
       <%= form.label :price_percentual, "Preço", class: 'form-label' %>
       <%= form.number_field :price_percentual, class: 'form-control', step: '0.01' %>
@@ -103,18 +103,35 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    function toggleFields() {
-      const discountType = document.querySelector('#discount_discount_type').value;
-      document.querySelector('#de_por_fields').style.display = discountType === 'de_por' ? 'block' : 'none';
-      document.querySelector('#leve_mais_pague_menos_fields').style.display = discountType === 'leve_mais_pague_menos' ? 'block' : 'none';
-      document.querySelector('#percentual_fields').style.display = discountType === 'percentual' ? 'block' : 'none';
-    }
+  function toggleFields() {
+    const discountType = document.querySelector('#discount_discount_type').value;
+    document.querySelector('#de_por_fields').classList.toggle('active', discountType === 'de_por');
+    document.querySelector('#leve_mais_pague_menos_fields').classList.toggle('active', discountType === 'leve_mais_pague_menos');
+    document.querySelector('#percentual_fields').classList.toggle('active', discountType === 'percentual');
+  }
 
-    const discountTypeField = document.querySelector('#discount_discount_type');
+  const discountTypeField = document.querySelector('#discount_discount_type');
 
-    if (discountTypeField) {
-      discountTypeField.addEventListener('change', toggleFields);
-      toggleFields();
-    }
-  });
+  if (discountTypeField) {
+    discountTypeField.addEventListener('change', toggleFields);
+    toggleFields();
+  }
+});
+
+document.addEventListener("turbo:load", function() {
+  function toggleFields() {
+    const discountType = document.querySelector('#discount_discount_type').value;
+    document.querySelector('#de_por_fields').classList.toggle('active', discountType === 'de_por');
+    document.querySelector('#leve_mais_pague_menos_fields').classList.toggle('active', discountType === 'leve_mais_pague_menos');
+    document.querySelector('#percentual_fields').classList.toggle('active', discountType === 'percentual');
+  }
+
+  const discountTypeField = document.querySelector('#discount_discount_type');
+
+  if (discountTypeField) {
+    discountTypeField.addEventListener('change', toggleFields);
+    toggleFields();
+  }
+});
+
 </script>

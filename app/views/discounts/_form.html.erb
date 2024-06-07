@@ -10,7 +10,6 @@
     </div>
   <% end %>
 
-
   <div class="discounts-top d-flex justify-content-between align-items-center" style="border-bottom: 1px solid #CFD8DC;">
     <h2>Formulário cadastro desconto</h2>
     <div class="form-check">
@@ -18,7 +17,6 @@
       <label class="form-check-label" for="discount_status">Ativo</label>
     </div>
   </div>
-
 
   <div class="mb-3">
     <%= form.label :name, "Nome do desconto", class: 'form-label' %>
@@ -94,6 +92,11 @@
       <small>Largura x altura recomendada 1000 x 1000px. Tamanho máximo 800KB.</small>
       <%= form.file_field :image, class: 'form-control-file' %>
     </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :product_id, "Produto", class: 'form-label' %>
+    <%= form.collection_select :product_id, Product.all, :id, :title, { prompt: "Selecione um Produto" }, { class: 'form-select' } %>
   </div>
 
   <div class="mb-3 text-end">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_142516) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_07_233749) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_142516) do
     t.decimal "price_final", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id", null: false
+    t.index ["product_id"], name: "index_discounts_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -70,4 +72,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_142516) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "discounts", "products"
 end

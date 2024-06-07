@@ -1,62 +1,36 @@
-<%= render "modal", title: "Detail item" do %>
+<%= render "modal", title: "Detalhes do desconto" do %>
+  <% if @discount.image.attached? %>
+    <div class="discount-image-modal">
+      <%= image_tag @discount.image, size: "250x250" %>
+    </div>
+  <% end %>
+  <div class="discount-details">
 
-  <p>
-      <% if @discount.image.attached? %>
-        <%= image_tag @discount.image %>
-      <% end %>
-    </p>
+    <% if @discount.discount_type.to_sym == :percentual %>
+      <p class="discount-percentage"><%= format_percentage(@discount.discount_percentage) %> OFF</p>
+    <% end %>
 
-    <p>
-      <strong>Name:</strong>
-      <%= @discount.name %>
-    </p>
+    <% if @discount.discount_type.to_sym == :leve_mais_pague_menos %>
+      <p class="discount-quantity"><strong>Leve <%= @discount.quantity_leve %> Pague <%= @discount.quantity_pague %></strong></p>
+    <% end %>
 
-    <p>
-      <strong>Description:</strong>
-      <%= @discount.description %>
-    </p>
+    <p class="discount-name"><%= @discount.name %></p>
+    <p class="discount-description"><%= @discount.description %></p>
 
-     <% case @discount.discount_type.to_sym %>
-     <% when :de_por %>
-      <p>
-        <span>de</span>
-        <s><%= format_price(@discount.price_from) %></s>
-      </p>
-
-      <p>
-        <strong>por <%= format_price(@discount.price_to) %></strong>
-      </p>
-     <% when :leve_mais_pague_menos %>
-      <p>
-        <strong>Leve <%= @discount.quantity_leve %></strong>
-        <strong>Pague <%= @discount.quantity_pague %></strong>
-      </p>
-
-      <p>
-        <strong>Price:</strong>
-        <%= format_price(@discount.price) %>
-      </p>
-     <% when :percentual %>
-      <p>
-        <%= format_percentage(@discount.discount_percentage) %>
-        <strong>OFF</strong>
-      </p>
-      <p>
-        <strong>Price:</strong>
-        <s><%= format_price(@discount.price_percentual) %></s>
-      </p>
-      <p>
-        <strong>Price final:</strong>
-        <%= format_price(@discount.price_final) %>
-      </p>
-     <% end %>
-
-
-  <div>
-    <%= link_to "Edit this discount", edit_discount_path(@discount), data: { turbo_action: "advance" } %> |
-    <%= link_to "Back to discounts", discounts_path %>
-
+    <% case @discount.discount_type.to_sym %>
+    <% when :de_por %>
+      <p class="discount-price-from">de <s><%= format_price(@discount.price_from) %></s></p>
+      <p class="discount-price-to"><strong>por <%= format_price(@discount.price_to) %></strong></p>
+    <% when :percentual %>
+      <p class="discount-price-percentual"><s> <%= format_price(@discount.price_percentual) %></s></p>
+      <p class="discount-price-final"><strong> <%= format_price(@discount.price_final) %></strong></p>
+    <% when :leve_mais_pague_menos %>
+      <p class="discount-price"><strong><%= format_price(@discount.price) %></strong></p>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Edit this discount", edit_discount_path(@discount), data: { turbo_action: "advance" }, class: "btn btn-primary" %>
+    <%= link_to "Back to discounts", discounts_path, class: "btn btn-secondary" %>
     <%= link_to "Delete", @discount, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
   </div>
-
 <% end %>

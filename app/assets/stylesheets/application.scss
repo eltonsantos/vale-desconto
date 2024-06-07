@@ -2,7 +2,6 @@
 
 * {
   font-family: 'Rubik', sans-serif;
-  color: #455A64;
 }
 
 body {
@@ -31,8 +30,8 @@ h6 {
 #sidebar {
   background-color: #007fba;
   color: #fff;
-  height: 100vh;
   padding: 1rem;
+  min-height: 100vh;
 }
 
 #sidebar h2 {
@@ -51,19 +50,14 @@ h6 {
 #sidebar ul li a {
   color: #fff;
   text-decoration: none;
-}
-
-#main-content {
-  padding: 1rem;
-}
-
-#sidebar ul li a {
-  color: #fff;
-  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+}
+
+#main-content {
+  padding: 1rem;
 }
 
 .menu-link {
@@ -81,10 +75,6 @@ h6 {
   margin-left: auto;
 }
 
-#main-content {
-  padding: 1rem;
-}
-
 #discounts {
   background-color: #fff;
   border: 1px solid #CFD8DC;
@@ -97,6 +87,7 @@ h6 {
   padding: 10px;
   margin-top: 20px;
 }
+
 .discounts-top {
   padding: 10px;
   border-bottom: 1px solid #CFD8DC;
@@ -127,4 +118,151 @@ h6 {
   background-color: darken(#007FBA, 10%);
   color: #fff;
   text-decoration: none;
+}
+
+.icon-class {
+  font-size: 20px;
+  color: green;
+}
+
+.icon-class {
+  cursor: pointer;
+  margin: 0 0.25rem;
+}
+
+.icon-class.edit-icon {
+  color: #0d6efd;
+}
+
+.icon-class.delete-icon {
+  color: #dc3545;
+}
+
+.icon-class.edit-icon:hover {
+  color: #0b5ed7;
+}
+
+.icon-class.delete-icon:hover {
+  color: #c82333;
+}
+
+.table-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MODAL */
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 2px solid #007FBA;
+}
+
+.modal-header .modal-title {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  right: 10px;
+  top: 62%;
+  transform: translateY(-50%);
+}
+
+.modal-body {
+  color: #455A64;
+}
+
+.discount-image-modal {
+  float: left;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.discount-image-modal img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.discount-details {
+  float: right;
+  width: calc(100% - 270px);
+}
+
+.discount-name {
+  font-size: 18px;
+}
+
+.discount-description {
+  font-size: 14px;
+}
+
+.discount-price-from {
+  font-size: 18px;
+  text-decoration: line-through;
+}
+
+.discount-price-to {
+  font-size: 24px;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.discount-percentage {
+  font-size: 24px;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.discount-price-percentual {
+  font-size: 18px;
+  text-decoration: line-through;
+}
+
+.discount-price-final {
+  font-size: 24px;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.discount-quantity {
+  font-size: 24px;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.discount-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #455A64;
+}
+
+.modal-footer {
+  clear: both;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .discount-image-modal {
+    float: none;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .discount-details {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
 }

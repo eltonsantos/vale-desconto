@@ -57,13 +57,13 @@
               <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
               <td>
                 <% if discount.status %>
-                  <i class="fas fa-check-circle text-success"></i>
+                  <i class="fas fa-check-circle text-success fa-2x"></i>
                 <% else %>
-                  <i class="fas fa-times-circle text-secondary"></i>
+                  <i class="fas fa-times-circle text-secondary fa-2x"></i>
                 <% end %>
               </td>
               <td>
-                <p>
+                <p class="btn-options">
                   <%= link_to discount_path(discount), data: { turbo_frame: "modal" } do %>
                     <%= image_tag 'eye.svg', alt: 'Show' %>
                   <% end %>

@@ -13,5 +13,7 @@ class Discount < ApplicationRecord
     end
   end
 
-  
+  def self.ransackable_attributes(auth_object = nil)
+    %w[activation_date created_at deactivation_date description discount_percentage discount_type id id_value image name price price_final price_from price_percentual price_to quantity_leve quantity_pague status updated_at]
+  end
 end

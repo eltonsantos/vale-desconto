@@ -3,7 +3,8 @@ class DiscountsController < ApplicationController
 
   # GET /discounts or /discounts.json
   def index
-    @discounts = Discount.all
+    @q = Discount.ransack(params[:q])
+    @discounts = @q.result
   end
 
   # GET /discounts/1 or /discounts/1.json

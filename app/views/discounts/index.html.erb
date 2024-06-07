@@ -11,79 +11,91 @@
 
   <div class="container discounts-search py-3">
     <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="status-select">Status</label>
-          <select class="form-select" id="status-select">
-            <option value="">Selecione o Status</option>
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
-          </select>
+      <%= search_form_for @q, url: discounts_path, method: :get, class: 'row', id: 'discount-search-form' do |f| %>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :status_eq, 'Status' %>
+            <%= f.select :status_eq, options_for_select([['Selecione o Status', ''], ['Ativo', 'true'], ['Inativo', 'false']], params.dig(:q, :status_eq)), {}, class: 'form-select', id: 'status-select' %>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="discount-type-select">Tipo do Desconto</label>
-          <select class="form-select" id="discount-type-select">
-            <option value="">Selecione o Tipo do Desconto</option>
-            <option value="de_por">De/Por</option>
-            <option value="leve_mais_pague_menos">Leve mais pague menos</option>
-            <option value="percentual">Percentual</option>
-          </select>
         </div>
-      </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :discount_type_eq, 'Tipo do Desconto' %>
+            <%= f.select :discount_type_eq, options_for_select([['Selecione o Tipo do Desconto', ''], ['De/Por', '0'], ['Leve mais pague menos', '1'], ['Percentual', '2']], params.dig(:q, :discount_type_eq)), {}, class: 'form-select', id: 'discount-type-select' %>
+       </div>
+        </div>
+      <% end %>      
     </div>
   </div>
 
   <div class="discounts-list">
-    <table class="table table-main">
-      <thead>
-        <tr>
-          <th>Desconto</th>
-          <th>Tipo</th>
-          <th>Data ativação</th>
-          <th>Data inativação</th>
-          <th>Status</th>
-          <th></th>
-        </tr>
-      <thead>
-      <tbody>
-        <% @discounts.each do |discount| %>
+    <% if @discounts.any? %>
+      <table class="table table-main">
+        <thead>
           <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <% if discount.image.attached? %>
-                  <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
-                <% end %>
-                <span class="ml-2"><%= discount.name %></span>
-              </div>
-            </td>
-            <td><%= format_discount_type(discount.discount_type) %></td>
-            <td><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
-            <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
-            <td>
-              <% if discount.status %>
-                <i class="fas fa-check-circle text-success"></i>
-              <% else %>
-                <i class="fas fa-times-circle text-secondary"></i>
-              <% end %>
-            </td>
-            <td>
-              <p>
-                <%= link_to discount_path(discount), data: { turbo_frame: "modal" } do %>
-                  <%= image_tag 'eye.svg', alt: 'Show' %>
-                <% end %>
-                <%= link_to edit_discount_path(discount) do %>
-                  <i class="fa-solid fa-pen-to-square icon-class edit-icon"></i>
-                <% end %>
-                <%= link_to discount, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash icon-class delete-icon"></i>
-                <% end %>
-              </p>
-            </td>
+            <th>Desconto</th>
+            <th>Tipo</th>
+            <th>Data ativação</th>
+            <th>Data inativação</th>
+            <th>Status</th>
+            <th></th>
           </tr>
-        <% end %>
-      <tbody>
-    </table>
+        <thead>
+        <tbody>
+          <% @discounts.each do |discount| %>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center discount-image-div">
+                  <% if discount.image.attached? %>
+                    <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
+                  <% end %>
+                  <span class="ml-2"><%= discount.name %></span>
+                </div>
+              </td>
+              <td><%= format_discount_type(discount.discount_type) %></td>
+              <td><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td>
+                <% if discount.status %>
+                  <i class="fas fa-check-circle text-success"></i>
+                <% else %>
+                  <i class="fas fa-times-circle text-secondary"></i>
+                <% end %>
+              </td>
+              <td>
+                <p>
+                  <%= link_to discount_path(discount), data: { turbo_frame: "modal" } do %>
+                    <%= image_tag 'eye.svg', alt: 'Show' %>
+                  <% end %>
+                  <%= link_to edit_discount_path(discount) do %>
+                    <i class="fa-solid fa-pen-to-square icon-class edit-icon"></i>
+                  <% end %>
+                  <%= link_to discount, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fa-solid fa-trash icon-class delete-icon"></i>
+                  <% end %>
+                </p>
+              </td>
+            </tr>
+          <% end %>
+        <tbody>
+      </table>
+    <% else %>
+      <p class="discount-not-found">Nenhum desconto encontrado</p>
+    <% end %>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var statusSelect = document.getElementById('status-select');
+    var discountTypeSelect = document.getElementById('discount-type-select');
+
+    statusSelect.addEventListener('change', function() {
+      document.getElementById('discount-search-form').submit();
+    });
+
+    discountTypeSelect.addEventListener('change', function() {
+      document.getElementById('discount-search-form').submit();
+    });
+  });
+</script>

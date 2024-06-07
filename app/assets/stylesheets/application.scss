@@ -25,6 +25,12 @@ h6 {
   background-color: #F1F4F5;
   color: #455A64;
   padding: 15px;
+  text-align: center;
+}
+
+.table-main td {
+  vertical-align: middle;
+  text-align: center;
 }
 
 #sidebar {
@@ -88,6 +94,15 @@ h6 {
   margin-top: 20px;
 }
 
+.image-upload-field {
+  border: 3px solid #CFD8DC !important;
+  border-style: dotted !important;
+}
+
+.image-upload-icon {
+  color: #455A64 !important;
+}
+
 .discounts-top {
   padding: 10px;
   border-bottom: 1px solid #CFD8DC;
@@ -98,6 +113,13 @@ h6 {
 
 .discounts-search {
   padding: 10px;
+}
+
+.discount-not-found {
+  text-align: center;
+  font-weight: bold;
+  color: #455A64;
+  font-size: 18px;
 }
 
 .custom-btn {
@@ -114,10 +136,11 @@ h6 {
   border: 1px solid transparent;
 }
 
-.custom-btn:hover {
-  background-color: darken(#007FBA, 10%);
-  color: #fff;
-  text-decoration: none;
+.custom-btn:hover, .custom-btn:active {
+  background-color: darken(#007FBA, 10%) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
 }
 
 .icon-class {
@@ -153,7 +176,6 @@ h6 {
 }
 
 /* MODAL */
-
 .modal-header {
   display: flex;
   justify-content: center;
@@ -179,6 +201,10 @@ h6 {
 
 .modal-body {
   color: #455A64;
+}
+
+.discount-image {
+  margin-right: 10px;
 }
 
 .discount-image-modal {

@@ -14,6 +14,10 @@
   <a href="#8-rubocop">Rubocop</a>&nbsp;&nbsp;&nbsp;
 </p>
 
+<p align="center">
+  <img alt="projeto DevLinks" src=".github/1.png" width="100%">
+</p>
+
 ---
 
 <br />
@@ -21,6 +25,10 @@
 ## 1. The project
 
 Project developed as a phase of a selection process that consists of registering product and discount and create sales according with type of discount chose. This project using `Ruby 3.3.0`, `Rails 7.1.3.3` and SQLite as database.
+
+<p align="center">
+  <img alt="projeto DevLinks" src=".github/3.png" width="100%">
+</p>
 
 Others technologies and gems:
 - Bootstrap;
@@ -48,6 +56,10 @@ In browser, go to **http://localhost:3000**
 The email and password default are: **admin@admin.com** and **123456**
 
 Enjoy!
+
+<p align="center">
+  <img alt="projeto DevLinks" src=".github/2.png" width="100%">
+</p>
 
 
 ## 3. Bootstrap

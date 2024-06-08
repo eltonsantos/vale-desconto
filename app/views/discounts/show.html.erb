@@ -28,9 +28,4 @@
       <p class="discount-price"><strong><%= format_price(@discount.price) %></strong></p>
     <% end %>
   </div>
-  <div class="modal-footer">
-    <%= link_to "Edit this discount", edit_discount_path(@discount), data: { turbo_action: "advance" }, class: "btn btn-primary" %>
-    <%= link_to "Back to discounts", discounts_path, class: "btn btn-secondary" %>
-    <%= link_to "Delete", @discount, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
-  </div>
 <% end %>

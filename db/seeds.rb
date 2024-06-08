@@ -1,3 +1,6 @@
+puts "Criando usuário padrão"
+User.create(email: "admin@admin.com", password: 123456)
+
 puts "Criando produtos"
 products = Product.create!([
   { title: "Produto 1", description: "Descrição do Produto 1", price: 10.0, image: "" }

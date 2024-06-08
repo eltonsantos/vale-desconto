@@ -334,3 +334,20 @@ h6 {
   flex: 1;
 }
 
+/* CUSTOM LOGIN */
+.bg-custom-top {
+  background-color: #007FBA;
+}
+
+.btn-custom {
+  background-color: #007FBA;
+  border-color: #007FBA;
+  color: white;
+  display: block;
+}
+
+.btn-custom:hover, .btn-custom:active {
+  background-color: darken(#007FBA, 10%) !important;
+  border-color: darken(#007FBA, 10%) !important;
+  color: white !important;
+}

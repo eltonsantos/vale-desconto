@@ -12,35 +12,46 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-2" id="sidebar">
-          <div class="d-flex justify-content-center align-items-center">
-            <%= image_tag 'logo-cor.png', alt: 'Logo', width: 147, height: 79, class: 'sidebar-logo' %>
+
+    <% if user_signed_in? %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-2" id="sidebar">
+            <div class="d-flex justify-content-center align-items-center">
+              <%= image_tag 'logo-cor.png', alt: 'Logo', width: 147, height: 79, class: 'sidebar-logo' %>
+            </div>
+            <ul>
+              <li>
+                <%= link_to discounts_path, class: 'menu-link' do %>
+                  <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
+                  Lista de descontos
+                  <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to products_path, class: 'menu-link' do %>
+                  <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
+                  Lista de produtos
+                  <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
+                <% end %>
+              </li>
+              <li>
+                <%= form_tag destroy_user_session_path, method: :delete, class: "menu-link d-flex align-items-center" do %>
+                  <%= submit_tag "Sair", class: "form-control" %>
+                <% end %>
+              </li>
+            </ul>
           </div>
-          <ul>
-            <li>
-              <%= link_to discounts_path, class: 'menu-link' do %>
-                <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
-                Lista de descontos
-                <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to products_path, class: 'menu-link' do %>
-                <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
-                Lista de produtos
-                <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-        <div class="col-10" id="main-content">
-          <%= yield %>
-          <%= turbo_frame_tag "modal", target: "_top" %>
+          <div class="col-10" id="main-content">
+            <%= yield %>
+            <%= turbo_frame_tag "modal", target: "_top" %>
+          </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+
     <script>
       document.addEventListener('turbo:load', () => {
         document.querySelectorAll('a[data-turbo-action="advance"]').forEach(link => {

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Discount < ApplicationRecord
   has_paper_trail
 
@@ -13,12 +15,32 @@ class Discount < ApplicationRecord
   validates :name, :description, :discount_type, :activation_date, :deactivation_date, presence: true
 
   def calculate_price_final
-    if discount_type == 'percentual' && price_percentual.present? && discount_percentage.present?
+    if discount_type == "percentual" && price_percentual.present? && discount_percentage.present?
       self.price_final = price_percentual - (price_percentual * (discount_percentage / 100.0))
     end
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[activation_date created_at deactivation_date description discount_percentage discount_type id id_value image name price price_final price_from price_percentual price_to quantity_leve quantity_pague status updated_at]
+    [
+      "activation_date",
+      "created_at",
+      "deactivation_date",
+      "description",
+      "discount_percentage",
+      "discount_type",
+      "id",
+      "id_value",
+      "image",
+      "name",
+      "price",
+      "price_final",
+      "price_from",
+      "price_percentual",
+      "price_to",
+      "quantity_leve",
+      "quantity_pague",
+      "status",
+      "updated_at",
+    ]
   end
 end

@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '8f1a7bb38486bb972baff273101bcd6ee96306fbcbd7c15ebc0e4aab0de108bed4c3a387f7367fe2f1ae9b2a4ba1e400fa65bc7c121da041a39633cbe477aa5b'
+  # config.secret_key = '8f1a7bb38486bb972baff273101bcd6ee96306fbcbd7c15ebc0e4aab0de108bed4c77aa5b'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'a3ab7ddbfd2b1ce022170356e2deaa7cfb91a5a7314af8ca6e60e2fc0a82adcc129452bd73dfa94e656757b65414ad236e0b4761f062e17c691e1a730f07cdc1'
+  # config.pepper = 'a3ab7ddbfd2b1ce022170356e2deaa7cfb91a5a7314af8ca6e60e2fc0a82adcc12947c691e1a730f07cdc1'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

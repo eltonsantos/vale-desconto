@@ -1,0 +1,24 @@
+<h1>Histórico de Alterações dos Descontos</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID do Desconto</th>
+      <th>Evento</th>
+      <th>Data de Alteração</th>
+      <th>Usuário</th>
+      <th>Alterações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.item_id %></td>
+        <td><%= version.event %></td>
+        <td><%= version.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+        <td><%= version.whodunnit %></td>
+        <td>#</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -42,6 +42,13 @@
                   <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
                 <% end %>
               </li>
+              <li>
+                <%= link_to history_discounts_path, class: 'menu-link' do %>
+                  <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
+                  Histórico
+                  <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
+                <% end %>
+              </li>
               <li class="menu-link d-flex align-items-center"><%= current_user.email %></li>
               <li>
                 <%= form_tag destroy_user_session_path, method: :delete, class: "menu-link d-flex align-items-center" do %>                  

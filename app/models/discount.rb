@@ -1,4 +1,6 @@
 class Discount < ApplicationRecord
+  has_paper_trail
+
   before_save :calculate_price_final
 
   belongs_to :product

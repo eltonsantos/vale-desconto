@@ -1,5 +1,5 @@
 class DiscountsController < ApplicationController
-  before_action :set_discount, only: %i[ show edit update destroy ]
+  before_action :set_discount, only: %i[ show edit update destroy diff ]
 
   # GET /discounts or /discounts.json
   def index
@@ -29,7 +29,6 @@ class DiscountsController < ApplicationController
   # POST /discounts or /discounts.json
   def create
     @discount = current_user.discounts.new(discount_params)
-
     respond_to do |format|
       if @discount.save
         format.html { redirect_to discounts_url, notice: "Discount was successfully created." }
@@ -57,11 +56,23 @@ class DiscountsController < ApplicationController
   # DELETE /discounts/1 or /discounts/1.json
   def destroy
     @discount.destroy!
-
     respond_to do |format|
       format.html { redirect_to discounts_url, notice: "Discount was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def history
+    @versions = PaperTrail::Version.where(item_type: 'Discount')
+  end
+
+  def diff
+    @version = PaperTrail::Version.find(params[:version_id])
+    @diff = @version.diff(@version.next)
+  end
+
+  def set_paper_trail_whodunnit
+    PaperTrail.request.whodunnit = current_user.id if current_user
   end
 
   private

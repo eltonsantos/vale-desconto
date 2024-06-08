@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lista de usuários</h1>
+<h6>Loja: Super João - Nova loja online</h6>
+
+<div id="users">
+  <div class="users-top">
+    <h2>Usuários cadastrados</h2>
+  </div>
+
+  <div class="users-list">
+    <table class="table table-main">
+      <thead>
+        <tr>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

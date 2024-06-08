@@ -36,6 +36,13 @@
                 <% end %>
               </li>
               <li>
+                <%= link_to users_path, class: 'menu-link' do %>
+                  <%= image_tag 'money-bill-transfer-duotone.png', alt: 'Money', class: 'menu-icon-left' %>
+                  Lista de usuários
+                  <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
+                <% end %>
+              </li>
+              <li>
                 <%= form_tag destroy_user_session_path, method: :delete, class: "menu-link d-flex align-items-center" do %>
                   <%= submit_tag "Sair", class: "form-control" %>
                 <% end %>

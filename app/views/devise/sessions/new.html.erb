@@ -23,13 +23,14 @@
               <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Digite sua senha" %>
             </div>
 
-            <div class="form-check mb-4">
-              <%= f.check_box :remember_me, class: "form-check-input" %>
-              <%= f.label :remember_me, class: "form-check-label" %>
-            </div>
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <div class="mb-2">
+                <%= link_to "Cadastrar novo usuário", new_registration_path(resource_name), class: "btn btn-secondary form-control" %><br />
+              </div>
+            <% end %>
 
             <div class="d-flex justify-content-between align-items-center">
-              <%= f.submit "Entrar", class: "btn btn-custom  form-control" %>
+              <%= f.submit "Entrar", class: "btn btn-custom form-control" %>
             </div>
           <% end %>
         </div>

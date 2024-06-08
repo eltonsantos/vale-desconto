@@ -42,8 +42,9 @@
                   <%= image_tag 'chevron.png', alt: 'Chevron', class: 'menu-icon-right' %>
                 <% end %>
               </li>
+              <li class="menu-link d-flex align-items-center"><%= current_user.email %></li>
               <li>
-                <%= form_tag destroy_user_session_path, method: :delete, class: "menu-link d-flex align-items-center" do %>
+                <%= form_tag destroy_user_session_path, method: :delete, class: "menu-link d-flex align-items-center" do %>                  
                   <%= submit_tag "Sair", class: "form-control" %>
                 <% end %>
               </li>

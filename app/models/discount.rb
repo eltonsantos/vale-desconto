@@ -2,6 +2,7 @@ class Discount < ApplicationRecord
   before_save :calculate_price_final
 
   belongs_to :product
+  belongs_to :user
 
   enum discount_type: { de_por: 0, leve_mais_pague_menos: 1, percentual: 2 }
 

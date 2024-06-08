@@ -28,7 +28,7 @@ class DiscountsController < ApplicationController
 
   # POST /discounts or /discounts.json
   def create
-    @discount = Discount.new(discount_params)
+    @discount = current_user.discounts.new(discount_params)
 
     respond_to do |format|
       if @discount.save
@@ -72,6 +72,6 @@ class DiscountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def discount_params
-      params.require(:discount).permit(:image, :name, :description, :discount_type, :activation_date, :deactivation_date, :status, :price, :quantity_leve, :quantity_pague, :price_from, :price_to, :discount_percentage, :price_percentual, :price_final)
+      params.require(:discount).permit(:image, :name, :description, :discount_type, :activation_date, :deactivation_date, :status, :price, :quantity_leve, :quantity_pague, :price_from, :price_to, :discount_percentage, :price_percentual, :price_final, :product_id)
     end
 end

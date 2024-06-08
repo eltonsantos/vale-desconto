@@ -1,5 +1,5 @@
 puts "Criando usuário padrão"
-User.create(email: "admin@admin.com", password: 123456)
+users = User.create!([{email: "admin@admin.com", password: 123456}])
 
 puts "Criando produtos"
 products = Product.create!([
@@ -18,7 +18,8 @@ Discount.create([
     status: 1,
     price_from: 5.6,
     price_to: 5.1,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito integral cereale Cacau 200g",
@@ -30,7 +31,8 @@ Discount.create([
     status: 0,
     price_from: 6.6,
     price_to: 6.1,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito integral cereale Cacau 200g",
@@ -42,7 +44,8 @@ Discount.create([
     status: 1,
     price_from: 5.6,
     price_to: 5.1,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 250g",
@@ -55,7 +58,8 @@ Discount.create([
     price: 5.85,
     quantity_leve: 3,
     quantity_pague: 2,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 150g",
@@ -68,7 +72,8 @@ Discount.create([
     price: 6.7,
     quantity_leve: 5,
     quantity_pague: 4,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 450g",
@@ -81,7 +86,8 @@ Discount.create([
     price: 17.99,
     quantity_leve: 4,
     quantity_pague: 3,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 90g",
@@ -94,7 +100,8 @@ Discount.create([
     discount_percentage: 10,
     price_percentual: 2.55,
     price_final: 2.30,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito integral cereale Cacau 550g",
@@ -107,7 +114,8 @@ Discount.create([
     discount_percentage: 10,
     price_percentual: 2.55,
     price_final: 2.30,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 120g",
@@ -120,7 +128,8 @@ Discount.create([
     discount_percentage: 10,
     price_percentual: 2.55,
     price_final: 2.30,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   },
   {
     name: "Biscoito cereale Cacau 170g",
@@ -133,6 +142,7 @@ Discount.create([
     discount_percentage: 10,
     price_percentual: 2.55,
     price_final: 2.30,
-    product: products[0]
+    product: products[0],
+    user: users[0]
   }
 ])

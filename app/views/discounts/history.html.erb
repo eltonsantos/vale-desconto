@@ -16,8 +16,15 @@
         <td><%= version.item_id %></td>
         <td><%= version.event %></td>
         <td><%= version.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
-        <td><%= version.whodunnit %></td>
-        <td>#</td>
+        <td>
+          <% user = User.find_by_id(version.whodunnit) %>
+          <% unless user.nil? %>
+            <%= user.email %>
+          <% end %>
+        </td>
+        <td>
+          <%= format_changes(version.object_changes) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

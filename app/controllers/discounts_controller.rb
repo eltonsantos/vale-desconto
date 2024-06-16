@@ -2,6 +2,7 @@
 
 class DiscountsController < ApplicationController
   before_action :set_discount, only: [:show, :edit, :update, :destroy, :diff]
+  before_action :set_paper_trail_whodunnit
 
   # GET /discounts or /discounts.json
   def index
@@ -65,12 +66,13 @@ class DiscountsController < ApplicationController
   end
 
   def history
-    @versions = PaperTrail::Version.where(item_type: "Discount")
+    @versions = PaperTrail::Version.where(item_type: "Discount").order(created_at: :desc)
   end
 
   def diff
     @version = PaperTrail::Version.find(params[:version_id])
-    @diff = @version.diff(@version.next)
+    @discount = @version.reify
+    @next_version = @version.next ? @version.next.reify : @discount
   end
 
   def set_paper_trail_whodunnit

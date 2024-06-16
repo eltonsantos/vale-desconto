@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for vale-desconto on 2024-06-16T20:14:23-03:00
+# fly.toml app configuration file generated for vale-desconto on 2024-06-16T20:19:21-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,9 +8,6 @@ primary_region = 'gig'
 console_command = '/rails/bin/rails console'
 
 [build]
-
-[deploy]
-  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
@@ -39,7 +36,3 @@ console_command = '/rails/bin/rails console'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[[statics]]
-  guest_path = '/rails/public'
-  url_prefix = '/'

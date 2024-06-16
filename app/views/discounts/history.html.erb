@@ -14,7 +14,7 @@
     <% @versions.each do |version| %>
       <tr>
         <td><%= version.item_id %></td>
-        <td><%= version.event %></td>
+        <td><%= format_event_type(version.event) %></td>
         <td><%= version.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
         <td>
           <% user = User.find_by_id(version.whodunnit) %>

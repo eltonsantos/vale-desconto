@@ -31,5 +31,16 @@ module ApplicationHelper
       "Sem alterações registradas"
     end
   end
+
+  def format_event_type(event_type)
+    case event_type
+    when "update"
+      "<span class='text-success'>Atualização</span>".html_safe
+    when "create"
+      "<span class='text-primary'>Criação</span>".html_safe
+    else
+      "<span class='text-danger'>Remoção</span>".html_safe
+    end
+  end
   
 end

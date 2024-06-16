@@ -16,15 +16,15 @@
           <div class="form-group">
             <%= f.label :status_eq, 'Status' %>
             <%= f.select :status_eq, options_for_select([['Selecione o Status', ''], ['Ativo', 'true'], ['Inativo', 'false']], params.dig(:q, :status_eq)), {}, class: 'form-select', id: 'status-select' %>
-        </div>
+          </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :discount_type_eq, 'Tipo do Desconto' %>
             <%= f.select :discount_type_eq, options_for_select([['Selecione o Tipo do Desconto', ''], ['De/Por', '0'], ['Leve mais pague menos', '1'], ['Percentual', '2']], params.dig(:q, :discount_type_eq)), {}, class: 'form-select', id: 'discount-type-select' %>
-       </div>
+          </div>
         </div>
-      <% end %>      
+      <% end %>
     </div>
   </div>
 
@@ -40,44 +40,48 @@
             <th>Status</th>
             <th></th>
           </tr>
-        <thead>
+        </thead>
         <tbody>
           <% @discounts.each do |discount| %>
             <tr>
-              <td>
-                <div class="d-flex align-items-center discount-image-div">
+              <td class="align-middle">
+                <div class="d-flex align-items-center">
                   <% if discount.image.attached? %>
-                    <%= image_tag discount.image, alt: discount.name, class: 'discount-image', width: 50, height: 50 %>
+                    <%= image_tag discount.image, alt: discount.name, class: 'discount-image img-thumbnail', width: 100, height: 100 %>
+                  <% else %>
+                    <div class="placeholder-image img-thumbnail"></div>
                   <% end %>
-                  <span class="ml-2"><%= discount.name %></span>
+                  <span class="ml-3"><%= discount.name %></span>
                 </div>
               </td>
-              <td><%= format_discount_type(discount.discount_type) %></td>
-              <td><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
-              <td><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
-              <td>
+              <td class="align-middle"><%= format_discount_type(discount.discount_type) %></td>
+              <td class="align-middle"><%= discount.activation_date.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td class="align-middle"><%= discount.deactivation_date.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td class="align-middle">
                 <% if discount.status %>
-                  <i class="fas fa-check-circle text-success fa-2x"></i>
+                  <i class="fas fa-check-circle text-success"></i>
                 <% else %>
-                  <i class="fas fa-times-circle text-secondary fa-2x"></i>
+                  <i class="fas fa-times-circle text-secondary"></i>
                 <% end %>
               </td>
-              <td>
-                <p class="btn-options">
-                  <%= link_to discount_path(discount), data: { turbo_frame: "modal" } do %>
-                    <%= image_tag 'eye.svg', alt: 'Show' %>
+              <td class="align-middle">
+                <div class="btn-options">
+                  <%= link_to discount_path(discount), class: 'btn btn-outline-primary btn-sm me-1', data: { turbo_frame: "modal" } do %>
+                    <i class="fas fa-eye"></i> Visualizar
                   <% end %>
-                  <%= link_to edit_discount_path(discount) do %>
-                    <i class="fa-solid fa-pen-to-square icon-class edit-icon"></i>
+
+                  <%= link_to edit_discount_path(discount), class: 'btn btn-outline-warning btn-sm me-1' do %>
+                    <i class="fas fa-pencil-alt"></i> Editar
                   <% end %>
-                  <%= link_to discount, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                    <i class="fa-solid fa-trash icon-class delete-icon"></i>
+
+                  <%= link_to discount, method: :delete, class: 'btn btn-outline-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fas fa-trash-alt"></i> Excluir
                   <% end %>
-                </p>
+                </div>
               </td>
             </tr>
           <% end %>
-        <tbody>
+        </tbody>
       </table>
     <% else %>
       <p class="discount-not-found">Nenhum desconto encontrado</p>

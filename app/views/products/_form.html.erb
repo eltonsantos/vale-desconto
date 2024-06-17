@@ -29,19 +29,6 @@
     <%= form.number_field :price, class: 'form-control', step: '0.01' %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :image, "Imagem", class: 'form-label' %>
-    <div class="border p-3 text-center image-upload-field">
-      <div class="mb-2">
-        <i class="fa-solid fa-cloud-arrow-up image-upload-icon" style="font-size: 2rem;"></i>
-      </div>
-      <strong>Arraste e solte a imagem aqui ou clique para upload!</strong>
-      <br>
-      <small>Largura x altura recomendada 1000 x 1000px. Tamanho máximo 800KB.</small>
-      <%= form.file_field :image, class: 'form-control-file' %>
-    </div>
-  </div>
-
   <div class="mb-3 text-end">
     <%= form.submit 'Salvar', class: 'btn btn-primary', style: 'background-color: #007FBA; width: 200px; height: 40px; text-align: center; padding-left: 0; padding-right: 0;' %>
   </div>

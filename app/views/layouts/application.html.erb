@@ -77,11 +77,9 @@
             const modal = document.getElementById('discountModal');
 
             if (modal) {
-              // Bootstrap modal hide
               const bootstrapModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
               bootstrapModal.hide();
 
-              // Wait for the modal to hide before navigating
               modal.addEventListener('hidden.bs.modal', () => {
                 window.location.href = url;
               }, { once: true });

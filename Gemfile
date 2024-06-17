@@ -83,3 +83,5 @@ group :test do
 end
 
 gem "aws-sdk-s3", "~> 1.152", :require => false
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
